@@ -1,18 +1,18 @@
 from django.db import models
-
+from django.utils.translation import ugettext_lazy as _
 
 class Image(models.Model):
     name = models.CharField(_('Title'), max_length=30)
-    image = models.ImageField(_('Image File'))
-    ordering = models.CharField(max_length=3)
+    image = models.ImageField(_('Image File'), upload_to = 'gallery/',)
+    ordering = models.CharField(max_length=3) #todo integer
 
     class Meta:
         verbose_name = _('Picture')
         verbose_name_plural = _('Pictures')
         ordering = ('ordering',)
-    
+
     def __unicode__(self):
-        pass
+        return u'%s' % self.name
     
     def get_absolute_url(self):
         pass
